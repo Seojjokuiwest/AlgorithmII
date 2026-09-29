@@ -3,7 +3,7 @@ from collections import deque
 
 def sol1(n: int):
     res, st_idx, ed_idx, sum_val = 1, 1, 1, 1
-
+    # 15 -> 1 2 3 4 5, 7 8, 4 5 6, 15
     while ed_idx != n:
         if sum_val == n:
             res += 1
@@ -15,7 +15,6 @@ def sol1(n: int):
         else:
             ed_idx += 1
             sum_val += ed_idx
-
     return res
 
 
@@ -24,33 +23,36 @@ def sol2(answers):
     p2 = [2, 1, 2, 3, 2, 4, 2, 5]
     p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
     res = [0, 0, 0]
-
+    l1, l2, l3 = len(p1), len(p2), len(p3)
     for i, answer in enumerate(answers):
-        if answer == p1[i % len(p1)]:
+        if answer == p1[i % l1]:
             res[0] += 1
-        if answer == p2[i % len(p2)]:
+        if answer == p2[i % l2]:
             res[1] += 1
-        if answer == p3[i % len(p3)]:
+        if answer == p3[i % l3]:
             res[2] += 1
-
     M = max(res)
     ans = []
-
     for idx, score in enumerate(res):
         if score == M:
             ans.append(idx + 1)
-
     return ans
+
 
 def sol3(board, moves):
     res = 0
-    stack = []
+    s= []
     for i in moves:
-        for j in len(board):
-            if board[j][i-1] == 1:
-                pass
-            break
-        break
+        for j in range(len(board)):
+            if board[j][i - 1] != 0:
+                t = board[j][i - 1]
+                board[j][i - 1] = 0
+                if s and s[-1] == t:
+                    s.pop()
+                    res += 2
+                else:
+                    s.append(t)
+                break
     return res
 
 def sol4(n:int, k:int):
@@ -106,9 +108,4 @@ def sol4_3(n,k):
     # 특정 idx 서칭 O(k), 트리를 잘 나누면 O(log k)?
     pass
 
-def sol2(answers):
-    arr1 = [1,2,3,4,5]
-    arr2 = [2,1,2,3,2,4,2,5]
-    arr3 = [3,3,1,1,2,2,4,4,5,5]
-
-    res = 0
+print(sol1(15))
