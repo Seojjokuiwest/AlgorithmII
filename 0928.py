@@ -1,21 +1,9 @@
-def bin_search():
-    pass
+ans = "(()[[]])([])"
+opn = ["(", "["]
+st = []
+idx, top = 0, len(ans)-1
 
-def solution1(part, comp):
-    hash = dict(zip(part, comp))
-    return hash
-
-
-def solution2():
-    pass
-
-
-def solution3():
-    pass
-
-def solution4():
-    pass
-
-t = ['a','b','c','d']
-c = ['a','b','c']
-print(solution1(t,c))
+for i in range(len(ans)):
+    if ans[i] == opn[0] or ans[i] == opn[1]:
+        st.append(ans[i])
+    

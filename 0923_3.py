@@ -90,4 +90,4 @@ def sol4_2(n:int, k:int):
 def sol4_3(n,k):
     pass
 
-print(sol1(15))
+print(sol4_2(100,1001))
