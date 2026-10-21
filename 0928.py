@@ -34,29 +34,26 @@ def sol2(gen, plays):
     return ans
 
 def sol3(id_list, report, k):
-    report = set(report)
-
-    reported_count = {}
-    reporters = {}
+    re_user = {user: set() for user in id_list}
 
     for r in report:
-        user, target = r.split()
+        user, t = r.split()
+        re_user[user].add(t)
 
-        reported_count[target] = reported_count.get(target, 0) + 1
+    re_cnt = {user: 0 for user in id_list}
 
-        if target not in reporters:
-            reporters[target] = []
+    for user in id_list:
+        for t in re_user[user]:
+            re_cnt[t] += 1
 
-        reporters[target].append(user)
+    res = {user: 0 for user in id_list}
 
-    result = {user: 0 for user in id_list}
+    for user in id_list:
+        for t in re_user[user]:
+            if re_cnt[t] >= k:
+                res[user] += 1
 
-    for target in reported_count:
-        if reported_count[target] >= k:
-            for user in reporters[target]:
-                result[user] += 1
-
-    return [result[user] for user in id_list]
+    return [res[user] for user in id_list]
 
 def sol4(record):
     users = {}
@@ -67,15 +64,15 @@ def sol4(record):
         if parts[0] == "Enter" or parts[0] == "Change":
             users[parts[1]] = parts[2]
 
-    answer = []
+    ans = []
 
     for r in record:
         parts = r.split()
 
         if parts[0] == "Enter":
-            answer.append(users[parts[1]] + "님이 들어왔습니다.")
+            ans.append(users[parts[1]] + "님이 들어왔습니다.")
 
         elif parts[0] == "Leave":
-            answer.append(users[parts[1]] + "님이 나갔습니다.")
+            ans.append(users[parts[1]] + "님이 나갔습니다.")
 
-    return answer
+    return ans
