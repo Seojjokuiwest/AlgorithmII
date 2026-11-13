@@ -60,7 +60,6 @@ def sol4(record):
 
     for r in record:
         parts = r.split()
-
         if parts[0] == "Enter" or parts[0] == "Change":
             users[parts[1]] = parts[2]
 

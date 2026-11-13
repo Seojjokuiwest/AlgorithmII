@@ -1,3 +1,41 @@
+class BST:
+    def __init__(self):
+        self.root = None
+    def find(self, n):
+        pass
+    def pop(self):
+        pass
+    def insert(self, n):
+        pass
+    def drop(self, n):
+        pass
+
+class Tree:
+    def __init__(self):
+        self.root = None
+
+
+
+
+
+class Node:
+    def __init__(self):
+        self.d = None
+        self.r = None
+        self.l = None
+        self.ch = []
+
+def sol1():
+    pass
+
+def sol2():
+    pass
+
+def sol3():
+    pass
+
+def sol4():
+    pass
 from collections import deque
 
 
